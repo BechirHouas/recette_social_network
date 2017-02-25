@@ -1,0 +1,28 @@
+%div{  }
+  %article.recipe
+    .div.backgrounded{style:"background-image:url({{recipe.pictures[0].url}})"}
+      .edit-btn.btn{ style:"display:{{recipe.isme}}" }
+        %a{ href: "#/recipe/{{recipe.id}}/edit" } edit
+      %h3.recipe-user
+        %a{href:"#/user/{{ recipe.userid }}"}
+          {{ recipe.email }}
+      %div
+        %header.recipe-title
+          {{ recipe.title }}
+        %uib_rating.recipe-rate{ng_model:"rate_value",max:"5",readonly:"isReadonly",on_hover:"hoveringOver(value)",on_leave:"overStar = null",aria_labelledby:"default-rating",ng_click:"addRate()"}
+      
+   
+    %h2
+      Ingredients
+    %section.ingredient-holder
+      %div{ ng_repeat:"ing in recipe.ingredients"}
+        %div.ingredient
+          {{ ing.title }}
+    %h2
+      Description
+    %section.recipe-description
+      %p
+        {{ recipe.description }}
+      %section.image-holder-details
+        %div{ ng_repeat:"img in recipe.pictures"}
+          %img{ src:"{{img.url}}" }
